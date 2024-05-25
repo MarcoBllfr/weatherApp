@@ -3,7 +3,7 @@ import './App.css';
 import MainCity from './components/mainCity/mainCard.jsx';
 import CityList from './components/listaCity/cityList.jsx';
 import { useQuery } from '@tanstack/react-query';
-
+import AddButton from './components/utilies/addButton.jsx';
 const fetchWeatherData = async (cityNameSaved) => {
   const promises = cityNameSaved.map(cityName =>
     fetch(``)
@@ -14,11 +14,21 @@ const fetchWeatherData = async (cityNameSaved) => {
 
 
 const App = () => {
+
   function setAttiva(idCitta){
     setCittaAttiva(idCitta);
     }
     
-  const [cityNameSaved] = useState([
+    const addCitta = () => {
+      const newCityName = prompt("Inserisci il nome della citta:");
+      if (newCityName) {
+        const newCity = { nomeCitta: newCityName, indice: cityNameSaved.length };
+        setCityNameSaved([...cityNameSaved, newCity]);
+      }
+    };
+
+
+  const [cityNameSaved,setCityNameSaved] = useState([
     {
     nomeCitta:"Rome",
     indice:0
@@ -47,6 +57,7 @@ const App = () => {
 
   return (
     <div>
+      <AddButton onClick={addCitta}/>
       <MainCity focusOnCity={data[cittaAttiva]} />
       <CityList lista={cityNameSaved} itsList={cittaAttiva}  onClick={setAttiva}/>
     </div>
