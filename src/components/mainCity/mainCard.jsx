@@ -20,7 +20,7 @@ const mainCard = ({focusOnCity}) => {
           </div>
           <img
             class="rounded-lg"
-            src="https://tecdn.b-cdn.net/img/new/slides/017.webp"
+            src=""
             alt="" />
         </div>
       </div>
